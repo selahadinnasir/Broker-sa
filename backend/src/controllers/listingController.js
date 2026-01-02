@@ -6,7 +6,7 @@ import Listing from '../models/Listing.js';
 // @access  Private
 
 export const createListing = asyncHandler(async (req, res) => {
-  console.log('BODY:', req.body);
+  console.log('BODY when created:', req.body);
 
   const { title, description, price, location, type, images } = req.body;
 
@@ -33,7 +33,7 @@ export const createListing = asyncHandler(async (req, res) => {
 // @access  Public
 export const getListings = asyncHandler(async (req, res) => {
   const listings = await Listing.find({ isPublished: true })
-    .populate('broker', 'name email')
+    .populate('broker', 'name email phone')
     .sort({ createdAt: -1 });
 
   res.json(listings);
@@ -45,7 +45,7 @@ export const getListings = asyncHandler(async (req, res) => {
 export const getListingById = asyncHandler(async (req, res) => {
   const listing = await Listing.findById(req.params.id).populate(
     'broker',
-    'name email'
+    'name email phone'
   );
 
   if (!listing) {

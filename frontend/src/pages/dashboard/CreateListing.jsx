@@ -7,6 +7,7 @@ import API from '../../services/api';
 
 const CreateListing = () => {
   const navigate = useNavigate();
+  const [uploading, setUploading] = useState(false);
 
   const [form, setForm] = useState({
     title: '',
@@ -38,6 +39,8 @@ const CreateListing = () => {
   };
 
   const handleImageUpload = async (e) => {
+    setUploading(true);
+
     const files = Array.from(e.target.files);
     const formData = new FormData();
 
@@ -49,11 +52,14 @@ const CreateListing = () => {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
+    console.log('image Url', data.imageUrls);
     // save URLs, NOT files
     setForm((prev) => ({
       ...prev,
       images: data.imageUrls,
     }));
+
+    setUploading(false);
   };
 
   return (
@@ -128,10 +134,11 @@ const CreateListing = () => {
 
           {/* Submit */}
           <button
-            disabled={loading}
-            className="bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition disabled:opacity-60"
+            type="submit"
+            disabled={loading || uploading}
+            className="bg-black text-white px-6 py-3 rounded-xl disabled:opacity-50"
           >
-            {loading ? 'Creating...' : 'Create Listing'}
+            {uploading ? 'Uploading images...' : 'Create Listing'}
           </button>
         </form>
       </main>

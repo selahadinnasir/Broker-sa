@@ -6,6 +6,7 @@ const Listings = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  console.log('Listing new', listings);
   useEffect(() => {
     getListings()
       .then(setListings)

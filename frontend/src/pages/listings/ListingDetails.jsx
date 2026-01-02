@@ -28,8 +28,18 @@ const ListingDetails = () => {
   return (
     <section className="max-w-5xl mx-auto px-6 py-12">
       <div className="bg-white rounded-2xl border shadow-sm overflow-hidden">
-        <div className="h-80 bg-gray-100 flex items-center justify-center">
-          <span className="text-gray-400">Image</span>
+        <div className="h-80 bg-gray-100">
+          {listing.images?.length > 0 ? (
+            <img
+              src={listing.images[0]}
+              alt={listing.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="h-full flex items-center justify-center text-gray-400">
+              No image
+            </div>
+          )}
         </div>
 
         <div className="p-8">
@@ -48,9 +58,14 @@ const ListingDetails = () => {
               <p className="font-semibold">{listing.location}</p>
             </div>
 
+            {console.log('BROKER IN RENDER:', listing.broker)}
+
             <div>
               <span className="text-gray-500">Broker</span>
               <p className="font-semibold">{listing.broker?.name}</p>
+              <p className="text-sm text-gray-600">
+                📞 {listing.broker?.phone || 'Phone not available'}
+              </p>
             </div>
           </div>
         </div>

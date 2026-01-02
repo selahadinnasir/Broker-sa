@@ -16,8 +16,6 @@ const router = express.Router();
 // routes/uploadRoutes.js2
 router.post('/', protect, upload.array('images', 5), (req, res) => {
   try {
-    console.log('FILES:', req.files);
-
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ message: 'No files uploaded' });
     }

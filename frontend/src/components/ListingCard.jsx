@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const ListingCard = ({ listing }) => {
+  // console.log(listing.title, listing.images);
   return (
     <Link
       to={`/listings/${listing._id}`}
