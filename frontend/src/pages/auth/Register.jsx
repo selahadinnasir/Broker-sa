@@ -11,6 +11,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
+    phone: '',
   });
 
   const handleSubmit = async (e) => {
@@ -68,6 +69,15 @@ const Register = () => {
               type="password"
               className="w-full rounded-lg border px-4 py-3 focus:ring-2 focus:ring-black"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Phone</label>
+            <input
+              type="tel"
+              className="w-full rounded-lg border px-4 py-3 focus:ring-2 focus:ring-black"
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
               required
             />
           </div>

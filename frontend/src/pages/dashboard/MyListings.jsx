@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import DashboardNav from '../../components/DashboardNav';
 import { getMyListings, deleteListing } from '../../services/listing.service';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { Pencil, Trash2 } from 'lucide-react';
 
 const MyListings = () => {
   const [listings, setListings] = useState([]);
@@ -39,11 +41,14 @@ const MyListings = () => {
               key={l._id}
               className="bg-white border rounded-xl p-5 flex items-center justify-between gap-4"
             >
-              {/* Left: Image + info */}
-              <div className="flex items-center gap-4">
+              {/* Left: clickable */}
+              <Link
+                to={`/listings/${l._id}`}
+                className="flex items-center gap-4 flex-1 hover:opacity-90"
+              >
                 {/* Image */}
                 <div className="w-24 h-20 bg-gray-100 rounded-lg overflow-hidden">
-                  {l.images && l.images.length > 0 ? (
+                  {l.images?.length > 0 ? (
                     <img
                       src={l.images[0]}
                       alt={l.title}
@@ -61,15 +66,26 @@ const MyListings = () => {
                   <h3 className="font-semibold">{l.title}</h3>
                   <p className="text-sm text-gray-500">${l.price}</p>
                 </div>
-              </div>
+              </Link>
 
-              {/* Right: Actions */}
-              <button
-                onClick={() => handleDelete(l._id)}
-                className="text-sm text-red-600 hover:text-red-700"
-              >
-                Delete
-              </button>
+              {/* Right: Delete */}
+              <div className="flex items-center gap-2">
+                <Link
+                  to={`/dashboard/listings/${l._id}/edit`}
+                  className="p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100"
+                  title="Edit"
+                >
+                  <Pencil size={16} />
+                </Link>
+
+                <button
+                  onClick={() => handleDelete(l._id)}
+                  className="p-2 rounded-lg border border-red-200 text-red-600 hover:bg-red-50"
+                  title="Delete"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
             </div>
           ))}
         </div>

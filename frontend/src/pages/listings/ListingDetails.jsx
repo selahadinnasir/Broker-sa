@@ -28,16 +28,19 @@ const ListingDetails = () => {
   return (
     <section className="max-w-5xl mx-auto px-6 py-12">
       <div className="bg-white rounded-2xl border shadow-sm overflow-hidden">
-        <div className="h-80 bg-gray-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-100 p-4">
           {listing.images?.length > 0 ? (
-            <img
-              src={listing.images[0]}
-              alt={listing.title}
-              className="w-full h-full object-cover"
-            />
+            listing.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${listing.title}-${index}`}
+                className="w-full h-80 object-cover rounded-xl"
+              />
+            ))
           ) : (
-            <div className="h-full flex items-center justify-center text-gray-400">
-              No image
+            <div className="h-80 flex items-center justify-center text-gray-400">
+              No images
             </div>
           )}
         </div>
@@ -57,8 +60,6 @@ const ListingDetails = () => {
               <span className="text-gray-500">Location</span>
               <p className="font-semibold">{listing.location}</p>
             </div>
-
-            {console.log('BROKER IN RENDER:', listing.broker)}
 
             <div>
               <span className="text-gray-500">Broker</span>

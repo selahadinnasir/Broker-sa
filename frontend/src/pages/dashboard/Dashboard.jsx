@@ -6,19 +6,21 @@ const Dashboard = () => {
       <DashboardNav />
 
       <main className="flex-1 p-10">
-        <h1 className="text-3xl font-bold">Welcome back 👋</h1>
-        <p className="text-gray-600 mt-2">
-          Manage your listings and account from here
-        </p>
+        <h1 className="text-3xl font-bold">Welcome back 👋 / እንኳን ደህና መጡ</h1>
+        <p className="text-gray-600 mt-2">ንብረቶችዎን እዚህ ገጽ ላይ ይቆጣጠሩ</p>
 
         <div className="grid grid-cols-3 gap-6 mt-10">
           <div className="bg-white rounded-2xl p-6 shadow">
-            <h3 className="text-sm text-gray-500">Total Listings</h3>
+            <h3 className="text-sm text-gray-500">
+              Total Listings / ጠቅላላ ንብረቶች
+            </h3>
             <p className="text-3xl font-bold mt-2">—</p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 shadow">
-            <h3 className="text-sm text-gray-500">Active Listings</h3>
+            <h3 className="text-sm text-gray-500">
+              Active Listings / አሁን ያሉ ንብረቶች
+            </h3>
             <p className="text-3xl font-bold mt-2">—</p>
           </div>
 

@@ -9,6 +9,7 @@ import ListingDetails from '../pages/listings/ListingDetails';
 import Dashboard from '../pages/dashboard/Dashboard';
 import MyListings from '../pages/dashboard/MyListings';
 import CreateListing from '../pages/dashboard/CreateListing';
+import EditListing from '../pages/dashboard/EditListing';
 
 const BrokerDashboard = () => (
   <div className="p-10 text-xl font-semibold">Broker Dashboard (Protected)</div>
@@ -72,6 +73,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute role="broker">
             <CreateListing />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/listings/:id/edit"
+        element={
+          <ProtectedRoute role="broker">
+            <EditListing />
           </ProtectedRoute>
         }
       />

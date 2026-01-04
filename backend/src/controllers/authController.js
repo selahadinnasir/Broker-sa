@@ -9,7 +9,7 @@ import generateToken from '../utils/generateToken.js';
 export const register = asyncHandler(async (req, res) => {
   const { name, email, password, phone } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !phone || !email || !password) {
     res.status(400);
     throw new Error('Please provide all required fields');
   }

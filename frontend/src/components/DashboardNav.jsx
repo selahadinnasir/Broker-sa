@@ -6,7 +6,9 @@ const DashboardNav = () => {
 
   return (
     <aside className="w-64 bg-gray-50 border-r min-h-screen p-6">
-      <h2 className="text-2xl font-bold mb-10">Broker Panel</h2>
+      <h2 className="text-2xl font-bold mb-10">
+        Broker Panel / የአቅራቢ(ደላላ) መቆጣጠሪያ
+      </h2>
 
       <nav className="space-y-2">
         <NavLink
@@ -35,7 +37,7 @@ const DashboardNav = () => {
           }
         >
           <Home size={18} />
-          My Listings
+          My Listings / የኔ ንብረቶች
         </NavLink>
 
         <NavLink
@@ -49,7 +51,7 @@ const DashboardNav = () => {
           }
         >
           <PlusSquare size={18} />
-          Create Listing
+          Create Listing / ንብረት ጨምር{' '}
         </NavLink>
       </nav>
     </aside>

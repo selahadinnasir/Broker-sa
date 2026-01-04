@@ -30,6 +30,11 @@ export const createListing = async (listingData) => {
 //   return res.data;
 // };
 
+export const updateListing = async (id, data) => {
+  const res = await API.put(`/listings/${id}`, data);
+  return res.data;
+};
+
 export const deleteListing = async (id) => {
   const res = await API.delete(`/listings/${id}`);
   return res.data;
