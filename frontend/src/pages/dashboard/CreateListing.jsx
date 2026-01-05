@@ -70,10 +70,10 @@ const CreateListing = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="lg:flex bg-gray-50 min-h-screen">
       <DashboardNav />
 
-      <main className="flex-1 p-10 max-w-3xl">
+      <main className="flex-1 px-4 py-6 lg:p-10 pt-20 lg:pt-10">
         <h1 className="text-3xl font-bold mb-2">Create Listing</h1>
         <p className="text-gray-600 mb-8">አዲስ ንብረት ወደ ዝርዝሮችዎ ያስገቡ</p>
 

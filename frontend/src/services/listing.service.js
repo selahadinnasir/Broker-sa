@@ -39,3 +39,8 @@ export const deleteListing = async (id) => {
   const res = await API.delete(`/listings/${id}`);
   return res.data;
 };
+
+export const markListingSold = async (listingId) => {
+  const res = await API.patch(`/listings/${listingId}/sold`);
+  return res.data;
+};

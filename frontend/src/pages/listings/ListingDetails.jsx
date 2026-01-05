@@ -28,7 +28,13 @@ const ListingDetails = () => {
   return (
     <section className="max-w-5xl mx-auto px-6 py-12">
       <div className="bg-white rounded-2xl border shadow-sm overflow-hidden">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-100 p-4">
+        <div
+          className={`grid gap-4 bg-gray-100 p-4 ${
+            listing.images?.length > 1
+              ? 'grid-cols-1 sm:grid-cols-2'
+              : 'grid-cols-1'
+          }`}
+        >
           {listing.images?.length > 0 ? (
             listing.images.map((img, index) => (
               <img

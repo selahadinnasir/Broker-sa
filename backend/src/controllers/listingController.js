@@ -32,8 +32,11 @@ export const createListing = asyncHandler(async (req, res) => {
 // @route   GET /api/listings
 // @access  Public
 export const getListings = asyncHandler(async (req, res) => {
-  const listings = await Listing.find({ isPublished: true })
-    .populate('broker', 'name email phone')
+  const listings = await Listing.find({
+    status: 'active',
+    isDeleted: false,
+  })
+    .populate('broker', 'name email')
     .sort({ createdAt: -1 });
 
   res.json(listings);
@@ -60,7 +63,10 @@ export const getListingById = asyncHandler(async (req, res) => {
 // @route   GET /api/listings/my
 // @access  Private
 export const getMyListings = asyncHandler(async (req, res) => {
-  const listings = await Listing.find({ broker: req.user._id }).sort({
+  const listings = await Listing.find({
+    broker: req.user._id,
+    isDeleted: false,
+  }).sort({
     createdAt: -1,
   });
 
@@ -109,10 +115,13 @@ export const updateListing = asyncHandler(async (req, res) => {
 // @desc    Delete listing
 // @route   DELETE /api/listings/:id
 // @access  Private (owner or admin)
+// @desc    Soft delete listing
+// @route   DELETE /api/listings/:id
+// @access  Private (owner or admin)
 export const deleteListing = asyncHandler(async (req, res) => {
   const listing = await Listing.findById(req.params.id);
 
-  if (!listing) {
+  if (!listing || listing.isDeleted) {
     res.status(404);
     throw new Error('Listing not found');
   }
@@ -125,6 +134,57 @@ export const deleteListing = asyncHandler(async (req, res) => {
     throw new Error('Not authorized');
   }
 
+  listing.isDeleted = true;
+  await listing.save();
+
+  res.json({ message: 'Listing deleted (soft)' });
+});
+
+// @desc    Mark listing as sold
+// @route   PATCH /api/listings/:id/sold
+// @access  Private (owner or admin)
+export const markListingAsSold = asyncHandler(async (req, res) => {
+  const listing = await Listing.findById(req.params.id);
+
+  if (!listing || listing.isDeleted) {
+    res.status(404);
+    throw new Error('Listing not found');
+  }
+
+  // Authorization
+  if (
+    listing.broker.toString() !== req.user._id.toString() &&
+    req.user.role !== 'admin'
+  ) {
+    res.status(403);
+    throw new Error('Not authorized');
+  }
+
+  listing.status = 'sold';
+  await listing.save();
+
+  res.json({
+    message: 'Listing marked as sold',
+    listing,
+  });
+});
+
+// @desc    Hard delete listing (admin only)
+// @route   DELETE /api/listings/:id/hard
+// @access  Private (admin)
+export const hardDeleteListing = asyncHandler(async (req, res) => {
+  if (req.user.role !== 'admin') {
+    res.status(403);
+    throw new Error('Admin access required');
+  }
+
+  const listing = await Listing.findById(req.params.id);
+
+  if (!listing) {
+    res.status(404);
+    throw new Error('Listing not found');
+  }
+
   await listing.deleteOne();
-  res.json({ message: 'Listing removed' });
+  res.json({ message: 'Listing permanently deleted' });
 });
