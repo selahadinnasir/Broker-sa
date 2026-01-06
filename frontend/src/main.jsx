@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import App from './App';
 import './index.css';
+import { registerSW } from 'virtual:pwa-register';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,3 +17,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+registerSW({
+  onNeedRefresh() {
+    console.log('New version available');
+  },
+  onOfflineReady() {
+    console.log('App ready to work offline');
+  },
+});

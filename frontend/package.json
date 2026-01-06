@@ -21,7 +21,8 @@
     "react-helmet-async": "^2.0.5",
     "react-hot-toast": "^2.6.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.10.1"
+    "react-router-dom": "^7.10.1",
+    "vite-plugin-pwa": "^1.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
