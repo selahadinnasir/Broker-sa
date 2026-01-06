@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { LayoutDashboard, LogOut, Menu, X } from 'lucide-react';
+import InstallAppButton from './InstallAppButton';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -18,8 +19,17 @@ const Navbar = () => {
     <nav className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-black">
-          RealEstate
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-extrabold tracking-tight"
+        >
+          <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-black text-white text-lg">
+            ደ
+          </span>
+
+          <span className="text-xl">
+            ደላላ<span className="text-gray-400 font-semibold">hub</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -51,6 +61,8 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               )}
+
+              {user && <InstallAppButton />}
 
               <button
                 onClick={handleLogout}
@@ -108,6 +120,8 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               )}
+              {/* Install App (Mobile) */}
+              <InstallAppButton />
 
               <button
                 onClick={handleLogout}
