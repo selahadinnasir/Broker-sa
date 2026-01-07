@@ -78,9 +78,25 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t py-4 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} RealEstate. All rights reserved.
-      </div>
+      <footer className="border-t bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-6 text-center">
+          {/* Brand */}
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-bold">
+              ደ
+            </span>
+
+            <span className="text-lg font-semibold text-gray-900">
+              ደላላ<span className="text-gray-400">hub</span>
+            </span>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-sm text-gray-500">
+            © {new Date().getFullYear()} ደላላhub. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </footer>
   );
 };
