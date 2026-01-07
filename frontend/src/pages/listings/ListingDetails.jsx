@@ -1,25 +1,36 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getListingById } from '../../services/listing.service';
+import { useQuery } from '@tanstack/react-query';
 
 const ListingDetails = () => {
   const { id } = useParams();
-  const [listing, setListing] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [listing, setListing] = useState(null);
+  // const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getListingById(id)
-      .then(setListing)
-      .finally(() => setLoading(false));
-  }, [id]);
+  // useEffect(() => {
+  //   getListingById(id)
+  //     .then(setListing)
+  //     .finally(() => setLoading(false));
+  // }, [id]);
 
-  if (loading) {
+  const { data: listing, isLoading } = useQuery({
+    queryKey: ['listing-details', id],
+    queryFn: () => getListingById(id),
+    staleTime: 1000 * 60 * 10, // 10 minute
+  });
+
+  console.log('list detail', listing);
+  // listing.map((lis) => console.log('lis price', lis.price));
+  // console.log('list detail', listing.price);
+
+  if (isLoading) {
     return (
       <div className="text-center py-20 text-gray-500">Loading listing...</div>
     );
   }
 
-  if (!listing) {
+  if (!listing || listing.length === 0) {
     return (
       <div className="text-center py-20 text-gray-500">Listing not found</div>
     );

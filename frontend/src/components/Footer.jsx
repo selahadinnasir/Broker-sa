@@ -6,7 +6,18 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Brand */}
         <div>
-          <h3 className="text-lg font-bold">RealEstate</h3>
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-extrabold tracking-tight"
+          >
+            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-black text-white text-lg">
+              ደ
+            </span>
+
+            <span className="text-xl">
+              ደላላ<span className="text-gray-400 font-semibold">hub</span>
+            </span>
+          </Link>{' '}
           <p className="text-sm text-gray-600 mt-2">
             A modern platform to list and discover properties with ease.
           </p>
