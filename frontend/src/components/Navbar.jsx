@@ -17,7 +17,7 @@ const Navbar = () => {
       try {
         await navigator.share({
           title: 'ደላላhub',
-          text: 'የቤት እና ንብረት መፈለጊያ መድረክ',
+          text: 'ደላላhub',
           url,
         });
       } catch {
