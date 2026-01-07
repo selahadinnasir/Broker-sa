@@ -69,17 +69,17 @@ const ListingDetails = () => {
 
           <div className="mt-6 flex flex-wrap gap-6 text-sm">
             <div>
-              <span className="text-gray-500">Price</span>
+              <span className="text-gray-500">ዋጋ</span>
               <p className="font-semibold">${listing.price}</p>
             </div>
 
             <div>
-              <span className="text-gray-500">Location</span>
+              <span className="text-gray-500">ቦታ</span>
               <p className="font-semibold">{listing.location}</p>
             </div>
 
             <div>
-              <span className="text-gray-500">Broker</span>
+              <span className="text-gray-500">የደላላው ስም</span>
               <p className="font-semibold">{listing.broker?.name}</p>
               <p className="text-sm text-gray-600">
                 📞 {listing.broker?.phone || 'Phone not available'}
