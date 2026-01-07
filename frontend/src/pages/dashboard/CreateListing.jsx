@@ -97,7 +97,7 @@ const CreateListing = () => {
           {/* Grid */}
           <div className="grid grid-cols-2 gap-4">
             <input
-              type="number"
+              type="text"
               placeholder="ዋጋ"
               className="border rounded-xl px-4 py-3"
               onChange={(e) => setForm({ ...form, price: e.target.value })}
