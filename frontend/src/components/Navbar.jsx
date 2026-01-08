@@ -11,7 +11,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const handleShareApp = async () => {
-    const url = window.location.origin; // share whole app
+    const url = window.location.href; // share whole app
 
     if (navigator.share) {
       try {
@@ -60,6 +60,7 @@ const Navbar = () => {
           >
             🔗 Share
           </button>
+          <InstallAppButton />
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
@@ -90,8 +91,6 @@ const Navbar = () => {
                     Dashboard
                   </Link>
                 )}
-
-                <InstallAppButton />
 
                 <button
                   onClick={handleLogout}
@@ -150,8 +149,6 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               )}
-
-              <InstallAppButton />
 
               <button
                 onClick={handleLogout}
